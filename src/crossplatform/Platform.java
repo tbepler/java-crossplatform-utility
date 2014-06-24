@@ -7,6 +7,11 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public abstract class Platform {
 	
+	private static final String OS_PROPERTY = "os.name";
+	private static final String MAC_OS = "mac os";
+	private static final String WINDOWS_OS = "windows";
+	private static final String LINUX_OS = "linux";
+	
 	private static Platform m_Instance = null;
 	
 	/**
@@ -22,12 +27,21 @@ public abstract class Platform {
 	}
 	
 	private static Platform initPlatform(){
-		//TODO
-		return null;
+		String os = System.getProperty(OS_PROPERTY).toLowerCase();
+		if(os.startsWith(MAC_OS)){
+			return new MacPlatform();
+		}
+		if(os.startsWith(WINDOWS_OS)){
+			return new WindowsPlatform();
+		}
+		if(os.startsWith(LINUX_OS)){
+			return new LinuxPlatform();
+		}
+		return new OtherPlatform();
 	}
 	
-	Platform(){
-		//block instantiation
+	protected Platform(){
+		//block instantiation except by subclasses
 	}
 	
 	/**

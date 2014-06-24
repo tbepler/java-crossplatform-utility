@@ -17,6 +17,10 @@ class MacPlatform extends Platform{
 	private AboutHandler m_About = null;
 	private PreferencesHandler m_Pref = null;
 	
+	MacPlatform(){
+		//package protected
+	}
+	
 	@Override
 	public void usePlatformLookAndFeel() throws UnsupportedLookAndFeelException {
 		System.setProperty("Quaqua.tabLayoutPolicy", "wrap");

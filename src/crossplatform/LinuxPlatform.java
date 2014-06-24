@@ -7,6 +7,10 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class LinuxPlatform extends Platform{
+	
+	LinuxPlatform(){
+		//package protected
+	}
 
 	@Override
 	public void usePlatformLookAndFeel() throws UnsupportedLookAndFeelException {

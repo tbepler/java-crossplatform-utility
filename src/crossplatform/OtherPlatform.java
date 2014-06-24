@@ -8,6 +8,10 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class OtherPlatform extends Platform{
 
+	OtherPlatform(){
+		//package protected
+	}
+	
 	@Override
 	public void usePlatformLookAndFeel() throws UnsupportedLookAndFeelException {
 		String className = UIManager.getSystemLookAndFeelClassName();
