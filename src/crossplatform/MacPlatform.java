@@ -1,5 +1,8 @@
 package crossplatform;
 
+import java.awt.Image;
+import java.awt.PopupMenu;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -110,6 +113,34 @@ class MacPlatform extends Platform{
 	@Override
 	public AboutHandler getAboutHandler() {
 		return m_About;
+	}
+
+	@Override
+	public boolean setDockIconBadge(String badge) {
+		com.apple.eawt.Application.getApplication().setDockIconBadge(badge);
+		return true;
+	}
+
+	@Override
+	public boolean setDockMenu(PopupMenu menu) {
+		com.apple.eawt.Application.getApplication().setDockMenu(menu);
+		return true;
+	}
+
+	@Override
+	public PopupMenu getDockMenu() {
+		return com.apple.eawt.Application.getApplication().getDockMenu();
+	}
+
+	@Override
+	public boolean setDockIconImage(Image i) {
+		com.apple.eawt.Application.getApplication().setDockIconImage(i);
+		return true;
+	}
+
+	@Override
+	public Image getDockIconImage() {
+		return com.apple.eawt.Application.getApplication().getDockIconImage();
 	}
 
 }

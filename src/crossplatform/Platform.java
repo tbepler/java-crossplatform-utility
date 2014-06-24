@@ -50,11 +50,25 @@ public abstract class Platform {
 	abstract public OS getOperatingSystem();
 	
 	/**
+	 * Sets the badge used by the dock for this application, if supported by this platform.
+	 * @param badge - value to set this application's badge to
+	 * @return - True if dock badges are supported by this platform, False otherwise
+	 */
+	abstract public boolean setDockIconBadge(String badge);
+	
+	/**
 	 * Sets the pop-up menu used by the dock for this application, if supported by this platform.
 	 * @param menu - pop-up menu to be shown on the dock
 	 * @return - True if dock pop-up menus are supported by this platform, False otherwise
 	 */
 	abstract public boolean setDockMenu(PopupMenu menu);
+	
+	/**
+	 * Returns the pop-up menu used on the dock for this application, if supported by this platform.
+	 * If not supported or no dock menu has been set, then null is returned instead.
+	 * @return
+	 */
+	abstract public PopupMenu getDockMenu();
 	
 	/**
 	 * Sets the image displayed for this application on the dock. Returns true if dock images
