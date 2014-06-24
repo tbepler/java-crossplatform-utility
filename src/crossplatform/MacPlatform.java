@@ -3,9 +3,11 @@ package crossplatform;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import jprobe.Constants;
-
 class MacPlatform extends Platform{
+	
+	private QuitHandler m_Quit = null;
+	private AboutHandler m_About = null;
+	private PreferencesHandler m_Pref = null;
 	
 	@Override
 	public void usePlatformLookAndFeel() throws UnsupportedLookAndFeelException {
@@ -31,6 +33,41 @@ class MacPlatform extends Platform{
 
 	@Override
 	public OS getOperatingSystem() {
+		return OS.MAC;
+	}
+
+	@Override
+	public boolean setQuitHandler(QuitHandler h) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public QuitHandler getQuitHandler() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean setPreferencesHandler(PreferencesHandler h) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public PreferencesHandler getPreferencesHandler() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean setAboutHandler(AboutHandler h) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public AboutHandler getAboutHandler() {
 		// TODO Auto-generated method stub
 		return null;
 	}
