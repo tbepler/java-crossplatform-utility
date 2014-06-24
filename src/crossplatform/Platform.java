@@ -1,5 +1,8 @@
 package crossplatform;
 
+import java.awt.Image;
+import java.awt.PopupMenu;
+
 import javax.swing.UnsupportedLookAndFeelException;
 
 public abstract class Platform {
@@ -34,7 +37,7 @@ public abstract class Platform {
 	abstract public void usePlatformLookAndFeel() throws UnsupportedLookAndFeelException;
 	
 	/**
-	 * Initializes any platform specific settings to make Java run more like a native
+	 * Initializes any platform specific settings necessary to make Java run more like a native
 	 * application.
 	 */
 	abstract public void initPlatformSpecificSettings();
@@ -45,6 +48,28 @@ public abstract class Platform {
 	 * @return operating system enumerated type
 	 */
 	abstract public OS getOperatingSystem();
+	
+	/**
+	 * Sets the pop-up menu used by the dock for this application, if supported by this platform.
+	 * @param menu - pop-up menu to be shown on the dock
+	 * @return - True if dock pop-up menus are supported by this platform, False otherwise
+	 */
+	abstract public boolean setDockMenu(PopupMenu menu);
+	
+	/**
+	 * Sets the image displayed for this application on the dock. Returns true if dock images
+	 * are supported by this Platform, false otherwise.
+	 * @param i - image that should be displayed on the dock for this application
+	 * @return - True if dock icons are supported by this platform, False otherwise
+	 */
+	abstract public boolean setDockIconImage(Image i);
+	
+	/**
+	 * Returns the image currently being displayed for this application on the dock, or null
+	 * if dock icons are not supported by this platform.
+	 * @return
+	 */
+	abstract public Image getDockIconImage();	
 	
 	/**
 	 * Sets the {@link QuitHandler} object to be used in the event of a system specific

@@ -3,6 +3,11 @@ package crossplatform;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import com.apple.eawt.AppEvent.AboutEvent;
+import com.apple.eawt.AppEvent.PreferencesEvent;
+import com.apple.eawt.AppEvent.QuitEvent;
+import com.apple.eawt.QuitResponse;
+
 class MacPlatform extends Platform{
 	
 	private QuitHandler m_Quit = null;
@@ -29,6 +34,44 @@ class MacPlatform extends Platform{
 	public void initPlatformSpecificSettings() {
 		System.setProperty("apple.laf.useScreenMenuBar", "true");
 		System.setProperty("com.apple.macos.smallTabs", "true");
+		
+		//set the apple menu About item handler to call back on the crossplatform AboutHandler
+		com.apple.eawt.Application.getApplication().setAboutHandler(new com.apple.eawt.AboutHandler(){
+
+			@Override
+			public void handleAbout(AboutEvent e) {
+				if(m_About != null){
+					m_About.about();
+				}
+			}
+			
+		});
+		
+		//set the apple menu Quit item handler to call back on the crossplatform QuitHandler
+		com.apple.eawt.Application.getApplication().setQuitHandler(new com.apple.eawt.QuitHandler(){
+
+			@Override
+			public void handleQuitRequestWith(QuitEvent e, QuitResponse r) {
+				if(m_Quit != null && !m_Quit.quit()){
+					r.cancelQuit();
+				}else{
+					r.performQuit();
+				}
+			}
+			
+		});
+		
+		//set the apple menu Preferences item handler to call back on the crossplatform PreferencesHandler
+		com.apple.eawt.Application.getApplication().setPreferencesHandler(new com.apple.eawt.PreferencesHandler(){
+
+			@Override
+			public void handlePreferences(PreferencesEvent e) {
+				if(m_Pref != null){
+					m_Pref.preferences();
+				}
+			}
+			
+		});
 	}
 
 	@Override
@@ -38,38 +81,35 @@ class MacPlatform extends Platform{
 
 	@Override
 	public boolean setQuitHandler(QuitHandler h) {
-		// TODO Auto-generated method stub
-		return false;
+		m_Quit = h;
+		return true;
 	}
 
 	@Override
 	public QuitHandler getQuitHandler() {
-		// TODO Auto-generated method stub
-		return null;
+		return m_Quit;
 	}
 
 	@Override
 	public boolean setPreferencesHandler(PreferencesHandler h) {
-		// TODO Auto-generated method stub
-		return false;
+		m_Pref = h;
+		return true;
 	}
 
 	@Override
 	public PreferencesHandler getPreferencesHandler() {
-		// TODO Auto-generated method stub
-		return null;
+		return m_Pref;
 	}
 
 	@Override
 	public boolean setAboutHandler(AboutHandler h) {
-		// TODO Auto-generated method stub
-		return false;
+		m_About = h;
+		return true;
 	}
 
 	@Override
 	public AboutHandler getAboutHandler() {
-		// TODO Auto-generated method stub
-		return null;
+		return m_About;
 	}
 
 }
