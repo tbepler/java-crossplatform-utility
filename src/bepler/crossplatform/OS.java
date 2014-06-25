@@ -1,4 +1,4 @@
-package crossplatform;
+package bepler.crossplatform;
 
 /**
  * Enumerated type representing differenct operating systems.

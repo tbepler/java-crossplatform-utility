@@ -1,4 +1,4 @@
-package crossplatform;
+package bepler.crossplatform;
 
 /**
  * This class is used to handle system specific about events, if those events are

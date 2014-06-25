@@ -1,4 +1,4 @@
-package crossplatform;
+package bepler.crossplatform;
 
 import java.awt.Image;
 import java.awt.PopupMenu;

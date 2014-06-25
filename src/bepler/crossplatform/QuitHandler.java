@@ -1,4 +1,4 @@
-package crossplatform;
+package bepler.crossplatform;
 
 /**
  * This class is used to handle system specific quit events, if those events
