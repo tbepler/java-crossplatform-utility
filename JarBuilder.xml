@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Chiptools.makejar" default="makejar" basedir=".">
+	<target name="makejar" description="Package the chiptools jar">
+		<jar
+			destfile="lib/crossplatform-util.jar"
+			includes="bepler/crossplatform/**"
+			basedir="bin">
+			<manifest>
+				<!-- <attribute name="Main-Class" value="bepler.crossplatform.Test"/> -->
+				<attribute name="Class-Path" value="Quaqua/quaqua.jar"/>
+			</manifest>
+			<fileset dir="." includes="LICENSE, README.md"/>
+		</jar>
+	</target>
+</project>

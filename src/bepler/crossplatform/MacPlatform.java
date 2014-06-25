@@ -2,6 +2,7 @@ package bepler.crossplatform;
 
 import java.awt.Image;
 import java.awt.PopupMenu;
+import java.io.File;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -23,8 +24,13 @@ class MacPlatform extends Platform{
 	
 	@Override
 	public void usePlatformLookAndFeel() throws UnsupportedLookAndFeelException {
-		System.setProperty("Quaqua.tabLayoutPolicy", "wrap");
 		try {
+			//add the Quaqua folder to java.library.path -- need to use LibraryPath.addDir(), because
+			//the system.library.path property is only read when the JVM is started
+			String jarURL = MacPlatform.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+			String jarDir = jarURL.substring(0, jarURL.lastIndexOf("/"));
+			LibraryPath.addDir(jarDir);
+			LibraryPath.addDir(jarDir + File.separator + "Quaqua");
 			//first try using the Quaqua look and feel
 			UIManager.setLookAndFeel(ch.randelshofer.quaqua.QuaquaManager.getLookAndFeel());
 		} catch (UnsupportedLookAndFeelException e) {
@@ -36,6 +42,7 @@ class MacPlatform extends Platform{
 			}
 		} catch (Throwable t){
 			//some other error occured - possibly the Quaqua library is not present
+			t.printStackTrace();
 			try {
 				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			} catch (Exception e1){
