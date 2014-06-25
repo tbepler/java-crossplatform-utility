@@ -34,6 +34,13 @@ class MacPlatform extends Platform{
 			} catch (Exception e1){
 				throw e;
 			}
+		} catch (Throwable t){
+			//some other error occured - possibly the Quaqua library is not present
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (Exception e1){
+				throw new UnsupportedLookAndFeelException("Unable to load Quaqua or " + UIManager.getSystemLookAndFeelClassName());
+			}
 		}
 	}
 

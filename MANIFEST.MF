@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: crossplatform-util
+Bundle-SymbolicName: bepler.crossplatform
+Bundle-Version: 1.0.0
+Bundle-Vendor: Tristan Bepler
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/Quaqua/
